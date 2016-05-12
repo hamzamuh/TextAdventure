@@ -10,6 +10,7 @@ public class Parser {
 	}
 	
 	public String getNext() {
+		System.out.println("> ");
 		return in.nextLine();
 	}
 }
