@@ -4,28 +4,19 @@ public abstract class Room {
 	// Bedroom
 	// Doctors office
 	// Final room
-
+	boolean cellflag;
+	boolean unlock;
 	Parser response;
-	
-	// Protagonist Swap
-	boolean swap = false;
-	
-	// Rooms Visited Toggles
-	boolean cellflag = false;
-	boolean cellBflag = false;
-	boolean hallwayflag = false;
-	
-	// Rooms Unlocked Toggles
-	boolean cellunlock;
-	boolean cellBunlock;
 
 	public Room() {
-		cellunlock = false;
-		cellBunlock = false;
+		cellflag = false;
+		unlock = false;
 		response = new Parser();
 	}
 
-	public int nextRoom() {return -1;}
+	public Room nextRoom() {
+		return new Cell();
+	}
 
 	public void commandRead(String command) {
 
@@ -43,15 +34,6 @@ public abstract class Room {
 			break;
 		case "pick":
 			System.out.println("pick");
-			if(splitCommand.length == 1) {
-				System.out.println("* What do you mean to pick up? *");
-			} else {
-				if(splitCommand.length == 3 && splitCommand[1].equals("up")) {
-					pickCommand(splitCommand);
-				} else {
-					System.out.println("*Generally you want to try picking something UP*");
-				}
-			}
 			break;
 		case "use":
 			System.out.println("use");
@@ -59,7 +41,7 @@ public abstract class Room {
 			break;
 		case "attack":
 			System.out
-					.println("*Professor Oak always said: There is a time and place for everything*");
+					.println("Professor Oak always said: There is a time and place for everything");
 			System.out
 					.println("If you listened, maybe you wouldn't have a broken hand right now");
 			attackCommand(splitCommand);
@@ -70,25 +52,13 @@ public abstract class Room {
 			break;
 		case "look":
 			System.out.println("look");
-			if(splitCommand.length == 1) {
-				System.out.println("* What do you mean to look at? *");
+			if (splitCommand[1].equals("at")) {
+				lookCommand(splitCommand);
 			} else {
-				if(splitCommand.length == 3 && splitCommand[1].equals("at")) {
-					lookCommand(splitCommand);
-				} else {
-					System.out.println("*Generally you want to try looking AT something*");
-				}
+				System.out.println("Generally you want to look AT something");
 				break;
 			}
-		// FIX: Want to have blank enter return this prompt //
-		case "\n":
-			System.out.println("* Please enter a command *");
-			break;
-		default:
-			System.out.println("* You cannot do that *");
-			break;
 		}
-			
 	}
 
 	public void intro() {
