@@ -10,8 +10,19 @@ public class Parser {
 	}
 	
 	public String getNext() {
-		System.out.println("> ");
-		return in.nextLine();
+		System.out.print("> ");
+		return in.nextLine().toLowerCase();
 	}
+	
+	// Purpose: Press enter to progress
+	/*public void progress(){
+		String enter;
+		boolean progress = false;
+		enter = in.next();
+		while(enter != " "){
+			if(in.hasNext()){in.next();}
+			else{progress = true;}
+		}
+	}*/
 }
 
