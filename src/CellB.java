@@ -85,8 +85,8 @@ public class CellB extends Room {
 				System.out.println("You feel like you should check the rest of the room first.");
 			} else {
 			System.out.print("You approach the terminal and attempt an answer on the keyboard:\n	'> ");
-				if (response.in.nextLine().equals("")) {
-					cellBunlock = true;
+				if (response.in.nextLine().equals("nothing")) {
+					cellunlock = true;
 					System.out.println("The door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you");
 				} else {System.out.println("The entry seems to have no effect");}
 				break;
@@ -95,6 +95,6 @@ public class CellB extends Room {
 	}
 	
 	@Override
-	public int nextRoom() {return 2;}
+	public Room nextRoom() {return new CellARevisit();}
 	
 }

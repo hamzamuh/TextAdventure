@@ -6,9 +6,7 @@ public abstract class Room {
 	// Final room
 
 	Parser response;
-	
-	// Protagonist Swap
-	boolean swap = false;
+	boolean pickUp = false;
 	
 	// Rooms Visited Toggles
 	boolean cellflag = false;
@@ -25,7 +23,9 @@ public abstract class Room {
 		response = new Parser();
 	}
 
-	public int nextRoom() {return -1;}
+	public Room nextRoom() {
+		return null;
+}
 
 	public void commandRead(String command) {
 
@@ -103,8 +103,9 @@ public abstract class Room {
 		System.out.println("You can't go there");
 	}
 
-	public void pickCommand(String[] cmd) {
+	public String pickCommand(String[] cmd) {
 		System.out.println("There is nothing to pick up");
+		return null;
 	}
 
 	public void useCommand(String[] cmd) {

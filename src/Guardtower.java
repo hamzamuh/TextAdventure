@@ -1,4 +1,4 @@
 
-public class Guardtower {
+public class Guardtower extends Room{
 
 }

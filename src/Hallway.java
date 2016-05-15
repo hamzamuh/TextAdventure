@@ -1,10 +1,32 @@
 public class Hallway extends Room {
+	boolean checkflag = false;
 
 	@Override
 	public void intro() {
-		System.out.println("We are now in the hallway of doom");
+		System.out
+				.println("We are now in a rather small, confined hallway with many doors. Perhaps this may be easy to get out of");
 	}
 
+	@Override
+	public void useCommand(String[] cmd) {
+		switch (cmd[1]) {
+		case "terminal":
+			if (!checkflag) {
+				System.out
+						.println("Let's not be hasty, perhaps take a look around");
+			} else {
+				System.out
+						.println("You approach this terminal as well, you're about to punch in what you think is the answer\n"
+								+ "however all you see is a bright light. It blinds you, suddenly you fall through the floor, or at least it\n"
+								+ "feels like it");
+				cellunlock = true;
+			}
+			break;
+		}
+
+	}
+
+	@Override
 	public void lookCommand(String[] cmd) {
 		if (cmd[1].equals("at")) {
 			switch (cmd[2]) {
@@ -12,25 +34,25 @@ public class Hallway extends Room {
 				System.out
 						.println("There are multiple doors, many seem to be shut with no lock or handle visible");
 				System.out
-						.println("Maybe the inconspicuous red, white, and blue levers will be of interest");
+						.println("Maybe the giant plaque will be of interest");
 				break;
-			case "lever":
+			case "plaque":
 				System.out
-						.println("You notice a plaque above the levers. It reads,\n"
-								+ "	'There are three levers; two lie while one is true. Choose carefully'\n"
-								+ "The levers are red, blue, and green. Which one would you like to look at? ");
-				String res = response.getNext();
-				if (res.equals("red")) {
-					System.out.println("Choose me, I am never wrong.");
-				} else if (res.equals("blue")) {
-					System.out.println("Red lies, I am the right choice.");
-				} else if (res.equals("green")) {
-					System.out.println("Blue is the liar, you must choose me!");
-				}
-				else {
-					System.out.println("That is not one of the levers.");
-				}
+						.println("You walk towards the plaque. It subdivides into 3 sections; red, blue, green");
+
+				System.out.println("Red: Choose me, I am never wrong.");
+				System.out.println("Blue: Red lies, I am the right choice.");
+				System.out
+						.println("Green: Blue is the liar, you must choose me!");
+				checkflag = true;
 			}
 		}
 	}
+
+	@Override
+	public Room nextRoom() {
+		return new HallwayB();
+
+	}
+
 }

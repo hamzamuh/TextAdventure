@@ -76,28 +76,24 @@ public class Cell extends Room {
 				System.out.println("You feel like you should check the rest of the room first.");
 			} else {
 				System.out.print("You approach the padlock. ");
-				if (swap == false){
 					System.out.println("As you grab the padlock, a voice comes from the back of the room.\n\n"
-							+ "	'Welcome to the... Nash Game. The rules are simple. First,\n"
-							+ "	your goal is to escape. Second, your choices are your and yours alone. What you\n"
+							+ "	'Welcome to the... Nash Game. The rules are simple. First,\n");
+				
+							response.progress();
+							
+							System.out.println("	your goal is to escape. Second, your choices are your and yours alone. What you\n"
 							+ "	choose to do with that power is up to you. Good luck.'\n");
-					swap = true;
-					nextRoom();
+							cellunlock = true;
 				}
-				else {
-					if (response.in.nextLine().equals("304")) {
-						cellunlock = true;
-						System.out.println("The door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you.");
-					} else {System.out.println("The combination doesn't seem to work.");}
-				}
-			}
 			break;
+			}
 		}
-	}
 	
 	@Override
-	public int nextRoom() {
-		if(swap && !cellunlock){return 0;}
-		else{return 1;}
+	public Room nextRoom() {
+		//if(swap && !cellunlock){
+		return new CellB();
+		
+		}
 	}
-}
+
