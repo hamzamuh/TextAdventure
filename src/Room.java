@@ -7,19 +7,20 @@ public abstract class Room {
 
 	Parser response;
 	boolean pickUp = false;
+	boolean itemflag = false;
 	
 	// Rooms Visited Toggles
 	boolean cellflag = false;
 	boolean cellBflag = false;
 	boolean hallwayflag = false;
 	
+	boolean playflag = true;
+	
 	// Rooms Unlocked Toggles
-	boolean cellunlock;
-	boolean cellBunlock;
+	boolean roomunlock;
 
 	public Room() {
-		cellunlock = false;
-		cellBunlock = false;
+		roomunlock = false;
 		response = new Parser();
 	}
 
@@ -27,6 +28,14 @@ public abstract class Room {
 		return null;
 }
 
+	/** 
+	 * Method: commandRead
+	 * 
+	 * Purpose: Interprets and checks for proper user input
+	 * 
+	 * Result: Calls respective command for that specific room
+	 * 
+	 */
 	public void commandRead(String command) {
 
 		String splitCommand[] = command.split(" ");
@@ -34,15 +43,9 @@ public abstract class Room {
 		switch (splitCommand[0]) {
 
 		case "wait":
-			System.out.println("wait");
 			waitCommand(splitCommand);
 			break;
-		case "go":
-			System.out.println("go");
-			goCommand(splitCommand);
-			break;
 		case "pick":
-			System.out.println("pick");
 			if(splitCommand.length == 1) {
 				System.out.println("* What do you mean to pick up? *");
 			} else {
@@ -54,22 +57,26 @@ public abstract class Room {
 			}
 			break;
 		case "use":
-			System.out.println("use");
+			if (splitCommand.length == 1) {
+				System.out.println("What do you want to use?");
+			}
+			else if (splitCommand.length == 2) {
 			useCommand(splitCommand);
+			}
+			else {
+				System.out.println("I don't know what you're trying to use");
+			}
 			break;
 		case "attack":
 			System.out
-					.println("*Professor Oak always said: There is a time and place for everything*");
+					.println("*Professor Oaksera always said: There is a time and place for everything*");
 			System.out
 					.println("If you listened, maybe you wouldn't have a broken hand right now");
-			attackCommand(splitCommand);
 			break;
 		case "talk":
-			System.out.println("talk");
-			talkCommand(splitCommand);
+			System.out.println("There is no one around to talk to.");
 			break;
 		case "look":
-			System.out.println("look");
 			if(splitCommand.length == 1) {
 				System.out.println("* What do you mean to look at? *");
 			} else {
@@ -80,7 +87,6 @@ public abstract class Room {
 				}
 				break;
 			}
-		// FIX: Want to have blank enter return this prompt //
 		case "\n":
 			System.out.println("* Please enter a command *");
 			break;
@@ -91,35 +97,60 @@ public abstract class Room {
 			
 	}
 
+	
+	/**
+	 * Method: intro
+	 * 
+	 * Purpose: Gives introductory message to the room
+	 * 
+	 * Result: None
+	 */
 	public void intro() {
 		System.out.println("do nothing");
 	}
 
+	/**
+	 * Method: waitCommand
+	 * 
+	 * Purpose: Gives notice that the user waits
+	 * 
+	 * Result: None
+	 */
 	public void waitCommand(String[] cmd) {
-		System.out.println("You got wrecked");
+		System.out.println("Time passes but nothing happens.");
 	}
 
-	public void goCommand(String[] cmd) {
-		System.out.println("You can't go there");
-	}
-
+	
+	/**
+	 * Method: pickCommand
+	 * 
+	 * Purpose: Picks an item up and enters it into the inventory if the room allows
+	 * 
+	 * Result: Item is added to Inventory
+	 */
 	public String pickCommand(String[] cmd) {
 		System.out.println("There is nothing to pick up");
 		return null;
 	}
 
+	/**
+	 * Method: useCommand
+	 * 
+	 * Purpose: Makes use of object in room or inventory
+	 * 
+	 * Result: Return action resulting from using that object
+	 */
 	public void useCommand(String[] cmd) {
 		System.out.println("Don't use that!");
 	}
 
-	public void attackCommand(String[] cmd) {
-		System.out.println("You hit a wall, you broke your hand");
-	}
-
-	public void talkCommand(String[] cmd) {
-		System.out.println("Talking to yourself makes you crazy");
-	}
-
+	/**
+	 * Method: lookCommand
+	 * 
+	 * Purpose: Directs attention to area in the room and gives description
+	 * 
+	 * Result: None
+	 */
 	public void lookCommand(String[] cmd) {
 		System.out.println("Look at that!");
 	}

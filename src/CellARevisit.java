@@ -7,12 +7,10 @@ public class CellARevisit extends Room {
 	public void intro() {
 		if (!cellflag) {
 			System.out.println(".");
-			// response.progress();
 			System.out.println("..");
 			System.out.println("...");
-			System.out.println("");
-			System.out
-					.println("You seem to find yourself back in the room with writing and the padlock on the door. What a strange out body experience,\n"
+			response.progress();
+			System.out.println("You seem to find yourself back in the room with writing and the padlock on the door. What a strange out body experience,\n"
 							+ "but you know that you're awake now. You pinch yourself just to be sure.");
 			cellflag = true;
 		}
@@ -80,9 +78,9 @@ public class CellARevisit extends Room {
 			System.out
 					.print("You approach the padlock and attempt a combination: ");
 			if (response.in.nextLine().equals("304")) {
-				cellunlock = true;
+				roomunlock = true;
 				System.out
-						.println("The door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you.");
+						.println("\nThe door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you.");
 			} else {
 				System.out.println("The combination doesn't seem to work.");
 			}

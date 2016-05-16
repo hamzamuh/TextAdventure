@@ -8,9 +8,11 @@ public class Cell extends Room {
 	public void intro() {
 		if (!cellflag) {
 			System.out.println(".");
-			//response.progress();
+			response.firstprogress();
 			System.out.println("..");
+			response.progress();
 			System.out.println("...");
+			response.progress();
 			System.out.println("");
 			System.out.println("You wake from a rough sleep. It only seems fair, the bed you were sleeping on\n"
 					+ "is a thin cot on a frame fixed to the wall. Your focus, although very hazy, turns from the\n"
@@ -77,13 +79,12 @@ public class Cell extends Room {
 			} else {
 				System.out.print("You approach the padlock. ");
 					System.out.println("As you grab the padlock, a voice comes from the back of the room.\n\n"
-							+ "	'Welcome to the... Nash Game. The rules are simple. First,\n");
-				
+							+ "	'Welcome to the... Esper Game. The rules are simple. First,\n" +
+							"	 your goal is to escape. Second, your choices are your and\n" +
+							"	 yours alone. What you choose to do with that power is up\n" +
+							"	 to you. Good luck.'\n");
 							response.progress();
-							
-							System.out.println("	your goal is to escape. Second, your choices are your and yours alone. What you\n"
-							+ "	choose to do with that power is up to you. Good luck.'\n");
-							cellunlock = true;
+							roomunlock = true;
 				}
 			break;
 			}

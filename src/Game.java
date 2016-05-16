@@ -21,8 +21,6 @@ public class Game {
 		Room cellA = new Cell();
 		Room hallwayA = new Hallway();
 		Room kitchenA = new Kitchen();
-		Room guardTowerA = new Guardtower();
-		Room wardensA = new Wardens();
 		Room cellB = new CellB();
 		// Room hallwayB = new HallwayB();
 		// Room infirmary = new Infirmary();
@@ -30,10 +28,10 @@ public class Game {
 		String[] command;
 		while (play) {
 			currentRoom.intro();
-			while ((!currentRoom.cellunlock)) {
+			while ((!currentRoom.roomunlock)) {
 				System.out.println("\n" + counter++
 						+ "	=================================================");
-				next = parser.getNext();
+				next = parser.getNext().toLowerCase();
 				currentRoom.commandRead(next);
 				if (currentRoom.pickUp) {
 					command = next.split(" ", 3);
@@ -41,6 +39,20 @@ public class Game {
 					currentRoom.pickUp = false;
 					System.out.println("Inventory: " + items.inventory.get(0));
 				}
+				if (currentRoom.itemflag) {
+					command = next.split(" ", 2);
+					items.useItem(command);
+					currentRoom.itemflag = false;
+					if (items.keycardflag) {
+						currentRoom.roomunlock = true;
+					}
+					items.keycardflag = false;
+				}
+				if (!currentRoom.playflag) {
+					System.exit(0);
+					
+				}
+				else {System.out.println("No"); }
 			}
 			currentRoom = currentRoom.nextRoom();
 			/*
@@ -51,5 +63,6 @@ public class Game {
 			 */
 
 		}
+		System.out.println("Exit While Loop");
 	}
 }

@@ -7,22 +7,22 @@ public class CellB extends Room {
 
 	public void intro() {
 		if (!cellBflag) {
-			System.out.println("...");
-			//response.progress();
-			System.out.println("'welcome...'");
-			System.out.println("...");
-			System.out.print("'...to escape...'");
-			System.out.println("...");
+			System.out.print("'welcome...'\n");
+			response.progress();
+			System.out.print("'...to escape...'\n");
+			response.progress();
 			System.out.println("'...good luck'\n");
+			response.progress();
 			System.out.println("You wake from a rough sleep. It only seems fair, the bed you were sleeping on\n"
 					+ "is a thin cot on a frame fixed to the wall. Your focus, although very hazy, turns from the\n"
 					+ "bed to the room. It's quite dark and... cramped...\n");
 			System.out.println("...\n");
-			//response.progress
+			response.progress();
 			System.out.println("The feeling of deja vu rushes over you. Suddenly, you begin to panic. The room\n"
 					+ "is incredibly small. The darkness doesn't help either. How did you get here? You know better\n"
 					+ "than to be in places like this. Your chest contracts from the breathing and you fall to the\n"
 					+ "ground. The fear begins to overwhelm you.");
+			response.progress();
 			System.out.println("But some feeling in the back of your mind steels you. You concentrate and breathe. With suprising\n"
 					+ "clarity, you get up.");
 			cellBflag = true;
@@ -86,8 +86,8 @@ public class CellB extends Room {
 			} else {
 			System.out.print("You approach the terminal and attempt an answer on the keyboard:\n	'> ");
 				if (response.in.nextLine().equals("nothing")) {
-					cellunlock = true;
-					System.out.println("The door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you");
+					roomunlock = true;
+					System.out.println("The door opens, you seem to be in a hallway now. The door also mysteriously shuts behind you.\n");
 				} else {System.out.println("The entry seems to have no effect");}
 				break;
 			}

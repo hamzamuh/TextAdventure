@@ -1,10 +1,18 @@
-public class Kitchen extends Room {
+public class KitchenRevisit extends Room {
+
 	@Override
 	public void intro() {
 		System.out
-				.println("You enter what appears to be a kitchen. To your right, you see an empty cafeteria. A door blocks the path into the cafeteria.\n"
-						+ "Within the kitchen, you see an oven, a cutting table, and a large refrigerator. \n"
-						+ "Isolating... but you don't feel alone. The wall opposite you has another door chained shut. A lock holds the chain in place.");
+				.println("You grab the key, and the ground starts shaking, it feels like an earthquake. Using your minimal survival skills, you lay on \n"
+						+ "the ground. Suddenly, everything is still again. You stand up and you look around");
+
+		response.progress();
+
+		System.out
+				.println("You enter what appears to be a kitchen. To your right, you see an empty cafeteria. A door blocks the path into "
+						+ "the cafeteria.\n"
+						+ "Within the kitchen, you see an oven, a cutting table, and a large ... wait a second\n"
+						+ "This is the same kitchen as before! The door is still chained shut! Maybe we can open it now");
 	}
 
 	@Override
@@ -19,7 +27,11 @@ public class Kitchen extends Room {
 					.println("You push and push and push and then plant your feet on the wall and pull the chains until your fingers cramp up\n"
 							+ "Maybe if you thought a little, you could find a better solution to this  ");
 			break;
+		case "egg":
+			itemflag = true;
+			break;
 		default:
+			itemflag = true;
 			System.out
 					.println("As Professor Oaksera always says; There is a time and place for everything");
 		}
@@ -40,23 +52,11 @@ public class Kitchen extends Room {
 			break;
 		case "oven":
 			System.out
-					.println("There is a pan of mac and cheese inside the oven, but nothing else of note. Luckily you're not hungry.");
+					.println("There is a inside the oven, but nothing else of note.");
 			break;
 		case "refrigerator":
 			System.out
-					.println("In the refrigerator, you see a loaf of bread and an egg carton. However, the egg carton only has one egg in it. Nothing interesting.\n" +
-							"You are shutting the door when you notice a note hanging inside the door. It reads,\n" +
-							"	'I can be stolen or given away, yet you will live.\n" +
-							"	 I can be replaced, but without me you cannot live.'");
-			System.out.println("From somewhere in the cafeteria, the echoing voice of the intercom rings out,\n" +
-					"	'Time is running out, be quick! Your lives depend on it.'\n" +
-					"As the voice fades, you feel the familiar sensation again as light fades and you fall through the floor into darkness.");
-			roomunlock = true;
-			break;
-
-		default:
-			System.out
-					.println("That doesn't seem to be anywhere in visible sight");
+					.println("In the refrigerator, you see a loaf of bread and an egg carton. However, the egg carton only has one egg in it.");
 		}
 	}
 
@@ -65,6 +65,7 @@ public class Kitchen extends Room {
 		String ret = "";
 		switch (cmd[2]) {
 		case "egg":
+			System.out.println("You grab the egg out of the refrigerator.");
 		case "knife":
 			ret = cmd[2];
 			pickUp = true;
@@ -75,7 +76,6 @@ public class Kitchen extends Room {
 
 	@Override
 	public Room nextRoom() {
-		return new Infirmary();
+		return new WardenOffice();
 	}
-
 }

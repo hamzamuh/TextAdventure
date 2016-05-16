@@ -1,11 +1,13 @@
 public class HallwayB extends Room {
 
+	boolean leverflag = false;
+	
 	@Override
 	public void intro() {
-		System.out
-				.println("Oh geez, this same hallway again?! You thought you were out, but clearly not the case. Looking around\n"
-						+ "you see much of the same thing. But here's something interesting there are now levers where the giant plaque used to be\n"
-						+ "The levers are also of the same colors, perhaps they're linked.");
+		response.progress();
+		System.out.println("\nOh geez, this same hallway again?! You thought you were out, but that's clearly not the case. Looking around\n"
+						+ "you see everything's the same... Wait, here's something interesting. There are now levers where the giant\n" 
+						+ "plaque used to be. The levers are also of the same colors, perhaps they're linked.");
 	}
 
 	@Override
@@ -21,20 +23,31 @@ public class HallwayB extends Room {
 					+ "	Grinds hard stones to meal\n"
 					+ "	Slays king, ruins town\n"
 					+ "	And beats high mountain down.\n");
+			response.progress();
 			System.out
-					.println("Well that looked fun, you turn your attention back to the levers. You should probably pull one now");
+					.println("Well that looked fun, you turn your attention back to the levers. You should probably pull one now.\n");
 			System.out
-					.println("P.S. Pulling the wrong lever might kill you.... soooo which one is it going to be");
+					.println("As you reach for the levers, the intercom comes back on,\n" +
+							"	'Make your choice carefully, not only your life is on the line.'\n");
+			response.progress();
+			System.out.println("* Which lever do you choose? *");
 			String res = response.getNext();
-			if (res.equals("red") || res.equals("green")) {
-				System.out.println("Blow up");
-			} else if (res.equals("blue")) {
-				cellunlock = true;
-			} else {
-				System.out
-						.println("That's not an option, colorblind little shit");
+			while(!leverflag) {
+				if (res.equals("red") || res.equals("green")) {
+					System.out.println("Blow up");
+				} else if (res.equals("blue")) {
+					System.out.println("The door opens and you go forward as your vision fades to black again...\n");
+					roomunlock = true;
+					leverflag = true;
+					response.progress();
+				} else {
+					System.out.println("* That is not one of the colors, please enter a color *");
+				}
 			}
 			break;
+		case "door":
+			System.out.println("The door won't move, there must be a way to get through.");
+			
 		}
 
 	}
@@ -45,21 +58,19 @@ public class HallwayB extends Room {
 			switch (cmd[2]) {
 			case "door":
 				System.out
-						.println("There are multiple doors, many seem to be shut with no lock or handle visible");
+						.println("There are multiple doors, many seem to be shut with no lock or handle visible.");
 				System.out
-						.println("Maybe the inconspicuous red, white, and blue levers will be of interest");
+						.println("Maybe the inconspicuous red, blue, and green levers will be of interest.");
 				break;
 			case "levers":
 				System.out
-						.println("You notice a smaller plaque above the levers. It reads,\n"
-								+ "	'There are three levers; two lie while one is true. Choose carefully'\n"
-								+ "The levers are red, blue, and green.");
+						.println("There are three levers in front of you: red, blue, and green.");
 				break;
 			}
 		}
 	}
 
 	public Room nextRoom() {
-		return new HallwayBRevisit();
+		return new HallwayARevisit();
 	}
 }

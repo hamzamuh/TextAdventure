@@ -15,16 +15,15 @@ public class Parser {
 	}
 	
 	// Purpose: Press enter to progress
-	public void progress(){
-		//String enter;
-		//boolean progress = false;
-		//enter = 
-		System.out.println("Press the enter key to continue");
+	public void firstprogress(){
+		
+		System.out.print("			* press enter to continue *");
 		in.nextLine();
-		//while(enter != " "){
-			//if(in.hasNext()){in.next();}
-			//else{progress = true;}
-		//}
+		
+	}
+	public void progress(){
+		in.nextLine();
+		
 	}
 }
 
